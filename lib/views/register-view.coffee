@@ -10,6 +10,7 @@ module.exports =
         @h1 "Register", outlet: 'title'
         @h2 outlet: "date"
         @p outlet: 'message'
+        @input type: 'hidden', outlet: 'className', id: 'class-name'
         @form =>
           @table class: 'pupils', =>
             @tr =>
@@ -21,7 +22,7 @@ module.exports =
     initialize: ->
       @button.on 'click', ->
         $('.pupils input').prop 'disabled', true
-        Register.record("Year 1", $('.pupils input'))
+        Register.record($('#class-name').attr("value"), $('.pupils input'))
         alert("Register Saved")
 
     applyData: (klass) ->
@@ -29,6 +30,8 @@ module.exports =
       @date.html(date.toDateString())
 
       @title.append(" " + klass)
+
+      @className.attr("value", klass)
 
       @date.append(" " + Register.currentSession())
 
