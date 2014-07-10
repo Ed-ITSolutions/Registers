@@ -66,5 +66,16 @@ Register =
         cleanUp.push folder
     return cleanUp
 
+  absentChildren: ->
+    pupils = {}
+    ClassList.all().forEach (klass) ->
+      pupils[klass] = []
+      if Register.beenDone(klass)
+        reg = Register.forNow klass
+        Object.keys(reg).forEach (key) ->
+          unless reg[key].present == "on"
+            pupils[klass].push key
+
+    return pupils
 
 module.exports = Register
