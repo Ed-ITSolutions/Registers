@@ -11,6 +11,12 @@ module.exports =
           accelerator: 'Alt+Command+I',
           click: ->
             BrowserWindow.getFocusedWindow().toggleDevTools()
+        },
+        {
+          label: 'Reload Application',
+          accelerator: 'Alt+Command+R',
+          click: ->
+            BrowserWindow.getFocusedWindow().restart()
         }
       ]
     },
