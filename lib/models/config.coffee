@@ -1,6 +1,7 @@
 CSON = require 'season'
 fs = require 'fs'
 {Database} = require '../database'
+Session = require './session'
 
 module.exports =
   keys: [
@@ -29,6 +30,8 @@ module.exports =
         data[key[0]] = key[1]
 
     CSON.writeFileSync(Database.path() + '/config.cson', data)
+
+    Session.loadDefaults()
 
   all: ->
     CSON.readFileSync(Database.path() + '/config.cson')

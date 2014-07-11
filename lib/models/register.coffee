@@ -3,6 +3,7 @@ fs = require 'fs'
 {Database} = require '../database'
 
 ClassList = require './class-list'
+Session = require './session'
 
 Register =
   record: (klass, inputs) ->
@@ -34,11 +35,7 @@ Register =
     date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
 
   currentSession: ->
-    date = new Date()
-    if date.getHours() <= 11
-      return "Morning"
-    else
-      return "Afternoon"
+    Session.currentSession()
 
   beenDone: (klass) ->
     fs.existsSync @fileName(klass)

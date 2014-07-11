@@ -1,5 +1,5 @@
 {View} = require 'space-pen'
-{Database, PupilList, Register} = require '../database'
+{Config, Database, PupilList, Register} = require '../database'
 AlertView = require './partials/alert-view'
 
 rimraf = require 'rimraf'
@@ -13,6 +13,8 @@ module.exports =
         @p class: 'message', outlet: 'message'
         @h3 "Absent Pupils"
         @ul outlet: 'absentChildrenList', id: 'absent-children-list'
+        @h3 "Dinners"
+        @p outlet: 'dinners'
         @h2 "Cleanup"
         @p "The following old registers are present in the database:"
         @ul id: 'cleanup-list', outlet: 'cleanupList'
@@ -24,6 +26,7 @@ module.exports =
         @message.html Register.notDoneYet().sort().join(", ") + " have not done thier registers yet."
 
       @absentChildren()
+      @dinnerSheets()
 
       Register.forCleanUp().forEach (folder) ->
         $('#cleanup-list').append("<li>" + folder + "</li>")
@@ -46,3 +49,6 @@ module.exports =
           absent[key].forEach (upn) ->
             pupil = PupilList.findByUPN(key, upn)
             $('#list-' + key + ' ul').append("<li>" + pupil.firstName + " " + pupil.lastName + "</li>")
+
+    dinnerSheets: ->
+      null

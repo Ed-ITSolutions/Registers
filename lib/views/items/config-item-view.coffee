@@ -11,7 +11,7 @@ module.exports =
     initialize: (key) ->
       @label.html Config.humanizeKey(key)
 
-      value = Config.all()[key]
+      value = Config.value(key)
 
       if value.constructor == Boolean
         @applyCheckbox(value)
