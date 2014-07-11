@@ -5,7 +5,7 @@ require "../assets/js/jquery.hotkeys.js"
 #LESS
 less = remote.require 'less'
 parser = new(less.Parser)({
-  paths: ['less/'],
+  paths: [__dirname + '/../less/'],
   filename: 'style.less'
 });
 
