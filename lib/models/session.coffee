@@ -51,3 +51,6 @@ module.exports =
     delete data[key]
 
     CSON.writeFileSync(Database.path() + '/sessions.cson', data)
+
+  dinnerChoiceList: ->
+    Object.keys(@all())

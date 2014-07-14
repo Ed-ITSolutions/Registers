@@ -1,5 +1,7 @@
 {View} = require 'space-pen'
-{Config} = require '../../database'
+{Config, Session} = require '../../database'
+
+_ = require 'underscore'
 
 module.exports =
   class ConfigItemView extends View
@@ -43,13 +45,19 @@ module.exports =
       @label.parent('li').append("<select></select>")
 
       select = @label.parent('li').children("select")
-      Config.options[key].forEach (option) ->
+      if _.isArray(Config.options[key])
+        options = Config.options[key]
+      else
+        options = eval(Config.options[key])
+
+      options.forEach (option) ->
         if value == option
           selected = " SELECTED"
         else
           selected = ""
 
         select.append("<option" + selected + ">" + option + "</option>")
+
 
       select.on 'change', ->
         key = Config.toKey($(this).parent('li').children('label').html())

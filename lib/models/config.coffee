@@ -9,14 +9,16 @@ module.exports =
     ["use-attendance", true],
     ["use-dinner", true],
     ["data-export-directory", "db/export/"],
-    ["dinner-style", "choice"]
+    ["dinner-style", "choice"],
+    ["dinner-session", "Morning"]
   ]
 
   options: {
     "dinner-style": [
       "choice",
       "yes/no"
-    ]
+    ],
+    "dinner-session": "Session.dinnerChoiceList()"
   }
 
   checkAndLoadDefaults: ->

@@ -39,7 +39,7 @@ module.exports =
         @dinnerChoice.html(" ")
 
       PupilList.forClass(klass).forEach (pupil) ->
-        $('.pupils').append(new RegisterLine(pupil, klass))
+        $('.pupils').append(new RegisterLine(pupil, klass, Register.currentSession()))
 
       @applyKeyBindings()
 

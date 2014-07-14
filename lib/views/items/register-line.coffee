@@ -11,7 +11,7 @@ module.exports =
         @td =>
           @input type: 'text', outlet: 'dinner', name: 'Dinner'
 
-    initialize: (pupil, klass) ->
+    initialize: (pupil, klass, session) ->
       @name.html pupil.firstName + " " + pupil.lastName
 
       @present.attr "id", pupil.upn + "-present"
@@ -23,6 +23,9 @@ module.exports =
         @present.css("display", "none")
 
       unless Config.all()['use-dinner']
+        @dinner.css("display", "none")
+
+      unless session == Config.value("dinner-session")
         @dinner.css("display", "none")
 
       if Config.value('dinner-style') == "yes/no"
