@@ -1,9 +1,10 @@
 # Registers
 
-Registers is an [atom-shell] application for taking pupil attendance registers in Primary Schools (or any institution with 2 sessions and fixed classes).
+Registers is an [atom-shell] application for taking pupil attendance registers in Primary Schools (or any institution with fixed classes).
 
-Please use the Pre-built Binaries from the Releases page for actually using Registers in a live environment.
+Grab a copy of Registers from the [Releases Page](https://github.com/Ed-ITSolutions/Registers/releases)
 
-## Running in Development
+See the [wiki] for more info on how to use Registers
 
-Run `apm install` to get all the node modules required (note `apm` not `npm`)
+[atom-shell]: https://github.com/atom/atom-shell
+[wiki]: https://github.com/Ed-ITSolutions/Registers/wiki
