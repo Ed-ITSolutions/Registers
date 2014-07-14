@@ -2,6 +2,8 @@
 {Config, Database, PupilList, Register} = require '../database'
 AlertView = require './partials/alert-view'
 
+PrintDinnerChoices = require '../tasks/print-dinner-choices'
+
 rimraf = require 'rimraf'
 
 module.exports =
@@ -14,7 +16,8 @@ module.exports =
         @h3 "Absent Pupils"
         @ul outlet: 'absentChildrenList', id: 'absent-children-list'
         @h3 "Dinners"
-        @p outlet: 'dinners'
+        @p =>
+          @button outlet: 'dinners', "Print Dinner Sheets"
         @h2 "Cleanup"
         @p "The following old registers are present in the database:"
         @ul id: 'cleanup-list', outlet: 'cleanupList'
@@ -51,4 +54,5 @@ module.exports =
             $('#list-' + key + ' ul').append("<li>" + pupil.firstName + " " + pupil.lastName + "</li>")
 
     dinnerSheets: ->
-      null
+      @dinners.on 'click', ->
+        PrintDinnerChoices.run()

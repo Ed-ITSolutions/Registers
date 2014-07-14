@@ -37,8 +37,11 @@ Register =
   currentSession: ->
     Session.currentSession()
 
-  beenDone: (klass) ->
-    fs.existsSync @fileName(klass)
+  beenDone: (klass, session = false) ->
+    unless session
+      return fs.existsSync @fileName(klass)
+    else
+      return fs.existsSync @generateFileName(klass, session, @todaysDate())
 
   forDate: (klass, date, session) ->
     fileName = @generateFileName(klass, session, @fileDate(date))
