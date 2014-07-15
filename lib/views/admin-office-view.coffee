@@ -23,6 +23,7 @@ module.exports =
         @ul id: 'cleanup-list', outlet: 'cleanupList'
         @p =>
           @button outlet: 'cleanUp', "Clean Up All"
+        @div class:'pdf'
 
     applyData: ->
       unless Register.notDoneYet().length == 0

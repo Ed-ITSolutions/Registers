@@ -23,12 +23,18 @@ module.exports =
     initialize: ->
       $(document).ready ->
         $('.nav a').on 'click', ->
+          text = $(this).html()
+
+          $(this).html("Loading...")
+
           view = require "./" + $(this).attr('href')
           instanceView = new view
           $('.main-body').html(instanceView)
           instanceView.applyData()
           $(this).parent('li').parent('ul').children('li.active').removeClass('active')
           $(this).parent('li').addClass('active')
+
+          $(this).html(text)
 
           return false
 
