@@ -2,6 +2,7 @@
   "name": "Registers",
   "version": "0.0.1",
   "main": "lib/index.js",
+  "repository": "https://github.com/Ed-ITSolutions/Registers",
 
 
   "dependencies": {
