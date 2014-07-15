@@ -3,7 +3,7 @@ DinnerListPDF = require '../views/pdfs/dinner-list-pdf'
 {Config} = require '../database'
 
 fs = require 'fs'
-wkhtmltopdf = require 'wkhtmltopdf'
+wkhtmltopdf = require '../../vendor/node-wkhtmltopdf'
 
 module.exports =
   run: ->
