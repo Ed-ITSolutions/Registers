@@ -1,3 +1,0 @@
-[submodule "vendor/node-wkhtmltopdf"]
-	path = vendor/node-wkhtmltopdf
-	url = git@github.com:rainabba/node-wkhtmltopdf.git
