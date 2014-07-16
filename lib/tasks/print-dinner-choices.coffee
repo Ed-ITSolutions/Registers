@@ -3,7 +3,7 @@ DinnerListPDF = require '../views/pdfs/dinner-list-pdf'
 {Config} = require '../database'
 
 fs = require 'fs'
-wkhtmltopdf = require '../../vendor/node-wkhtmltopdf'
+wkhtmltopdf = require '../bindings/wkhtmltopdf'
 
 module.exports =
   run: ->
@@ -13,7 +13,7 @@ module.exports =
     $('.pdf').html(pdf)
     pdf.applyData()
 
-    wkhtmltopdf($('.pdf').html()).pipe(fs.createWriteStream(path))
+    wkhtmltopdf.render($('.pdf').html(), path)
 
     $('.pdf').html("")
 
