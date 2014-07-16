@@ -27,3 +27,12 @@ $(document).ready ->
   view = new HomeView
   main.setBodyView(view)
   view.applyData()
+
+# Events
+require('ipc').on 'menu', (message) ->
+  view = require './views/' + message
+  instance = new view
+  $('.main-body').html(instance)
+  instance.applyData()
+
+  $('.sidebar li.active').removeClass('active')
