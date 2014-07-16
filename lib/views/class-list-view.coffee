@@ -7,7 +7,11 @@ module.exports =
     @content: ->
       @div class: "class-list", =>
         @h1 "Class List"
-        @ul class: 'entries', outlet: 'entries'
+        @table class: 'entries', outlet: 'entries', =>
+          @tr =>
+            @th "Class"
+            @th "Pupils"
+            @th "Status"
 
     initialize: ->
       @applyData()

@@ -14,10 +14,6 @@ module.exports =
               @a href: 'register-gateway-view', "Take Register"
             @li =>
               @a href: 'admin-office-view', "Admin Office"
-            @li =>
-              @a href: 'config-view', "Configuration"
-            @li =>
-              @a href: 'data-ie-view', "Import/Export Data"
         @div class: 'main-body', outlet: 'body'
 
     initialize: ->

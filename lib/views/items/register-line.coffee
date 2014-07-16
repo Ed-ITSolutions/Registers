@@ -3,20 +3,15 @@
 
 module.exports =
   class RegisterLineView extends View
-    @content: ->
+    @content: (pupil, klass, session) ->
       @tr =>
-        @td class: 'name', outlet: 'name'
+        @td class: 'name', outlet: 'name', pupil.firstName + " " + pupil.lastName
         @td =>
-          @input type: 'checkbox', outlet: 'present', name: 'Present'
+          @input type: 'checkbox', outlet: 'present', name: 'Present', id: pupil.upn + "-present"
         @td =>
-          @input type: 'text', outlet: 'dinner', name: 'Dinner'
+          @input type: 'text', outlet: 'dinner', name: 'Dinner', id: pupil.upn + "-dinner"
 
     initialize: (pupil, klass, session) ->
-      @name.html pupil.firstName + " " + pupil.lastName
-
-      @present.attr "id", pupil.upn + "-present"
-      @dinner.attr "id", pupil.upn + "-dinner"
-
       @present.attr "data-value", "off"
 
       unless Config.all()['use-attendance']

@@ -1,16 +1,18 @@
 {View} = require 'space-pen'
-{ClassList} = require '../../database'
+{ClassList, PupilList} = require '../../database'
 
 module.exports =
   class ClassView extends View
-    @content: ->
-      @li =>
-        @p outlet: 'name'
-        @a outlet: 'button'
+    @content: (klass) ->
+      @tr =>
+        @td klass
+        @td outlet: 'pupils'
+        @td outlet: 'status'
 
     initialize: (klass) ->
-      @name.html klass
       if ClassList.hasPupils(klass)
-        @button.html "Take Register"
+        @pupils.html PupilList.forClass(klass).length
+        @status.html "Ok"
       else
-        @button.html "Add Pupils"
+        @pupils.html "-"
+        @status.html "Needs Pupils"

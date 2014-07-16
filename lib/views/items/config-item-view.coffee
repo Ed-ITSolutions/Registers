@@ -5,14 +5,12 @@ _ = require 'underscore'
 
 module.exports =
   class ConfigItemView extends View
-    @content: ->
+    @content: (key) ->
       @li =>
-        @label outlet: 'label'
+        @label outlet: 'label', Config.humanizeKey(key)
         @input outlet: 'input'
 
     initialize: (key) ->
-      @label.html Config.humanizeKey(key)
-
       value = Config.value(key)
 
       if value.constructor == Boolean

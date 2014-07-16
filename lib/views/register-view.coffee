@@ -1,5 +1,6 @@
 {View} = require 'space-pen'
 {PupilList, Register, Config} = require '../database'
+AlertView = require './partials/alert-view'
 
 RegisterLine = require './items/register-line'
 
@@ -11,19 +12,18 @@ module.exports =
         @h2 outlet: "date"
         @p outlet: 'message'
         @input type: 'hidden', outlet: 'className', id: 'class-name'
-        @form =>
-          @table class: 'pupils', =>
-            @tr =>
-              @th "Name"
-              @th " "
-              @th "Dinner Choice", outlet: 'dinnerChoice'
-          @input type: 'submit', outlet: 'button', value: "Record Register"
+        @table class: 'pupils', =>
+          @tr =>
+            @th "Name"
+            @th " "
+            @th "Dinner Choice", outlet: 'dinnerChoice'
+        @input type: 'submit', outlet: 'button', value: "Record Register"
 
     initialize: ->
       @button.on 'click', ->
         $('.pupils input').prop 'disabled', true
         Register.record($('#class-name').attr("value"), $('.pupils input'))
-        alert("Register Saved")
+        $('.main-body').prepend new AlertView("Register Saved", "Your Register has been saved!")
 
     applyData: (klass) ->
       date = new Date()

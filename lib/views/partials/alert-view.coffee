@@ -3,17 +3,14 @@ _ = require 'underscore'
 
 module.exports =
   class AlertView extends View
-    @content: ->
+    @content: (title, message) ->
       @div class: 'alert', =>
-        @h3 outlet: 'title'
-        @p outlet: 'message'
+        @h3 outlet: 'title', title
+        @p outlet: 'message', message
         @p outlet: 'buttonGroup', =>
           @button outlet: 'close', "Ok"
 
     initialize: (title, message, confirm = null) ->
-      @title.html title
-      @message.html message
-
       @close.on 'click', ->
         $('.alert').remove()
 

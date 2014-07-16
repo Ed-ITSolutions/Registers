@@ -9,13 +9,11 @@ module.exports =
         @object data: "assets/svgs/logo.svg", type: "image/svg+xml", =>
           @h1 "Register"
         @div class: 'info', =>
-          @h2 outlet: 'schoolName'
+          @h2 outlet: 'schoolName', Config.value("school-name")
           @p outlet: 'timeInfo'
           @p outlet: 'classInfo'
 
     applyData: ->
-      @schoolName.html Config.value("school-name")
-
       date = new Date
       @timeInfo.html(date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear() + " " + Register.currentSession())
 

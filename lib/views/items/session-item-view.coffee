@@ -3,18 +3,13 @@
 
 module.exports =
   class SessionItemView extends View
-    @content: ->
+    @content: (key) ->
       @li =>
-        @input type: 'text', outlet: 'sessionName'
-        @input type: 'text', outlet: 'sessionTime'
+        @input type: 'text', outlet: 'sessionName', value: key, 'data-key': key
+        @input type: 'text', outlet: 'sessionTime', value: Session.all()[key], 'data-key': key
         @a outlet: 'delete', href: "#", "Delete"
 
     initialize: (key) ->
-      @sessionName.attr 'value', key
-      @sessionName.attr 'data-key', key
-      @sessionTime.attr 'value', Session.all()[key]
-      @sessionTime.attr 'data-key', key
-
       @sessionName.on 'change', ->
         key = $(this).attr("data-key")
         newKey = $(this).val()
