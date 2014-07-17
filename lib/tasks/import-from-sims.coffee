@@ -1,10 +1,10 @@
-fs = require 'fs'
-{ClassList, Config, PupilList} = require '../database'
+{ClassList, Config, Database, PupilList} = require '../database'
 
 remote = require 'remote'
 dialog = remote.require 'dialog'
 
 xml2js = require 'xml2js'
+fs = require 'fs'
 
 
 module.exports =
@@ -12,6 +12,8 @@ module.exports =
     files = dialog.showOpenDialog({ properties: [ 'openFile' ]})
 
     parser = new xml2js.Parser()
+
+    Database.clearForImport()
 
     fs.readFile files[0], (err, data) ->
       parser.parseString data, (err, result) ->

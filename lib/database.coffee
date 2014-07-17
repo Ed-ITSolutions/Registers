@@ -1,5 +1,6 @@
 CSON = require 'season'
 fs = require 'fs'
+rimraf = require 'rimraf'
 
 exports = exports ? this
 exports.Database =
@@ -7,6 +8,12 @@ exports.Database =
     CSON.readFileSync(__dirname + '/../data-path.cson')['path']
 
   ensureActive: ->
+
+  clearForImport: ->
+    rimraf.sync(@path() + "pupils/", (e) ->
+      alert("Deletion Error: " + e)
+    )
+    fs.unlinkSync(@path() + "class-list.cson")
 
 
 ClassList = require './models/class-list'
