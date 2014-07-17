@@ -50,10 +50,10 @@ Register =
   forNow: (klass) ->
     CSON.readFileSync(@fileName(klass))
 
-  notDoneYet: ->
+  notDoneYet: (session = false)->
     classes = []
     ClassList.all().forEach (klass) ->
-      unless Register.beenDone(klass)
+      unless Register.beenDone(klass, session)
         classes.push(klass)
     return classes
 

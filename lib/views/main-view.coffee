@@ -13,7 +13,9 @@ module.exports =
             @li class: 'register-link', =>
               @a href: 'register-gateway-view', "Take Register"
             @li =>
-              @a href: 'admin-office-view', "Admin Office"
+              @a href: 'dinners-view', "Dinners Summary"
+            @li =>
+              @a href: 'attendance-view', "Attendance Summary"
         @div class: 'main-body', outlet: 'body'
 
     initialize: ->

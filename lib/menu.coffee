@@ -61,6 +61,11 @@ module.exports =
           label: 'Class List'
           click: ->
             BrowserWindow.getFocusedWindow().send('menu', 'class-list-view')
+        },
+        {
+          label: 'Clean Up'
+          click: ->
+            BrowserWindow.getFocusedWindow().send('menu', 'cleanup-view')
         }
       ]
     },
@@ -134,6 +139,11 @@ module.exports =
           label: 'Class List'
           click: ->
             BrowserWindow.getFocusedWindow().send('menu', 'class-list-view')
+        },
+        {
+          label: 'Clean Up'
+          click: ->
+            BrowserWindow.getFocusedWindow().send('menu', 'cleanup-view')
         }
       ]
     },
