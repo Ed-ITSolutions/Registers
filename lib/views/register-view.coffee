@@ -50,6 +50,14 @@ module.exports =
 
 
     applyKeyBindings: ->
+      current = 0
       $(document).bind('keydown', '/', ->
-        alert("foo")
+        $(window).scrollTop(20 * current)
+        $('.pupils input[name=Present]')[current].checked = true
+        current += 1
+      )
+
+      $(document).bind('keydown', '\\', ->
+        $(window).scrollTop(20 * current)
+        current += 1
       )
