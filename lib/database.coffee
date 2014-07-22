@@ -24,6 +24,7 @@ Session = require './models/session'
 
 exports.ClassList = ClassList
 exports.Config = Config
+exports.Menu = require './models/menu'
 exports.PupilList = PupilList
 exports.Register = Register
 exports.Session = Session

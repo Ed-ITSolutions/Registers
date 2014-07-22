@@ -16,6 +16,8 @@ module.exports =
         @message.html Register.notDoneYet(Config.value("dinner-session")).sort().join(", ") + " have not done thier dinner registers yet."
 
       if Config.value("dinner-style") == "choice"
-        @body.html(new DinnerChoiceView)
+        view = new DinnerChoiceView
+        @body.html(view)
+        view.applyData()
       else
         @body.html(new DinnerYesNoView)

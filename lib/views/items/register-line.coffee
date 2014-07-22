@@ -14,18 +14,17 @@ module.exports =
     initialize: (pupil, klass, session) ->
       @present.attr "data-value", "off"
 
-      unless Config.all()['use-attendance']
-        @present.css("display", "none")
+      @applyConfig(session)
+      @beenDone(pupil, klass)
+      @bindEvents()
+      @dinners()
 
-      unless Config.all()['use-dinner']
-        @dinner.css("display", "none")
 
-      unless session == Config.value("dinner-session")
-        @dinner.css("display", "none")
-
+    dinners: ->
       if Config.value('dinner-style') == "yes/no"
         @dinner.attr 'type', 'checkbox'
 
+    bindEvents: ->
       @dinner.on 'change', ->
         $(this).attr("data-value", $(this).val())
 
@@ -35,6 +34,17 @@ module.exports =
         else
           $(this).attr("data-value", "off")
 
+    applyConfig: (session) ->
+      unless Config.all()['use-attendance']
+        @present.css("display", "none")
+
+      unless Config.all()['use-dinner']
+        @dinner.css("display", "none")
+
+      unless session == Config.value("dinner-session")
+        @dinner.css("display", "none")
+
+    beenDone: (pupil, klass) ->
       if Register.beenDone(klass)
         data = Register.forDate(klass,  new Date(), Register.currentSession())
 
