@@ -18,5 +18,4 @@ app.on 'ready', ->
   window.on 'closed', ->
     window = null
 
-    if (process.platform != 'darwin')
-      app.quit();
+    app.quit();
