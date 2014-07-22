@@ -12,7 +12,8 @@ module.exports =
         @h1 "Register", outlet: 'title'
         @h2 outlet: "date"
         @p outlet: 'message'
-        @div outlet: 'menuDiv', =>
+        @div outlet: 'menuDiv', class: 'menu', =>
+          @strong "Dinner Menu"
           @ul outlet: 'menuUl', id: 'menu'
         @input type: 'hidden', outlet: 'className', id: 'class-name'
         @table class: 'pupils', =>
