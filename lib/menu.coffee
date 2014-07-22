@@ -76,6 +76,11 @@ module.exports =
           label: 'About Registers'
           click: ->
             BrowserWindow.getFocusedWindow().send('menu', 'about-view')
+        },
+        {
+          label: 'Wiki'
+          click: ->
+            require('shell').openExternal("https://github.com/Ed-ITSolutions/Registers/wiki")
         }
       ]
     }
@@ -154,6 +159,11 @@ module.exports =
           label: 'About Registers'
           click: ->
             BrowserWindow.getFocusedWindow().send('menu', 'about-view')
+        },
+        {
+          label: 'Wiki'
+          click: ->
+            require('shell').openExternal("https://github.com/Ed-ITSolutions/Registers/wiki")
         }
       ]
     }
