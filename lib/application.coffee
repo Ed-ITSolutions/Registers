@@ -6,8 +6,7 @@ menu = require './menu'
 window = null
 
 app.on 'window-all-closed', ->
-  if (process.platform != 'darwin')
-    app.quit();
+  app.quit();
 
 app.on 'ready', ->
   window = new BrowserWindow {width: 800, height: 600}
