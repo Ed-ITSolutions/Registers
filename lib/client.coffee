@@ -36,3 +36,6 @@ require('ipc').on 'menu', (message) ->
   instance.applyData()
 
   $('.sidebar li.active').removeClass('active')
+
+require('ipc').on 'receive-from-cache', (response) ->
+  console.dir response

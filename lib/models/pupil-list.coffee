@@ -5,7 +5,7 @@ fs = require 'fs'
 
 module.exports =
   forClass: (klass) ->
-    pupils = CSON.readFileSync(@fileName(klass))[klass]
+    pupils = require('ipc').sendSync('get-from-cache', klass.toLowerCase().replace(" ", "-"))[klass]
 
   fileName: (klass) ->
     file = klass.toLowerCase().replace(" ", "-") + ".cson"

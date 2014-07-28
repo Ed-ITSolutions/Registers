@@ -12,7 +12,7 @@ module.exports =
       CSON.writeFileSync(Database.path() + '/sessions.cson', data)
 
   all: ->
-    CSON.readFileSync(Database.path() + '/sessions.cson')
+    require('ipc').sendSync('get-from-cache', 'sessions')
 
   currentSession: ->
     date = new Date

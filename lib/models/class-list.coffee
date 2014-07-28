@@ -5,7 +5,7 @@ fs = require 'fs'
 
 module.exports =
   all: ->
-    classes = CSON.readFileSync(Database.path() + '/class-list.cson')["classes"]
+    require('ipc').sendSync('get-from-cache', 'class-list')["classes"]
 
   hasPupils: (klass) ->
     fs.existsSync @pupilFileName(klass)

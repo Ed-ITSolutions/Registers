@@ -6,7 +6,7 @@ fs = require 'fs'
 module.exports =
   data: ->
     if fs.existsSync Database.path() + '/menu.cson'
-      return CSON.readFileSync(Database.path() + '/menu.cson')
+      return require('ipc').sendSync('get-from-cache', 'menu')
     else
       return {}
 

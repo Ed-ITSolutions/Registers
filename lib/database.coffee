@@ -1,13 +1,14 @@
 CSON = require 'season'
 fs = require 'fs'
 rimraf = require 'rimraf'
+Cache = require './cache'
 
 exports = exports ? this
 exports.Database =
+  cache: {}
+
   path: ->
     CSON.readFileSync(__dirname + '/../data-path.cson')['path']
-
-  ensureActive: ->
 
   clearForImport: ->
     rimraf.sync(@path() + "pupils/", (e) ->
@@ -15,16 +16,13 @@ exports.Database =
     )
     fs.unlinkSync(@path() + "class-list.cson")
 
+  loadCache: ->
+    @cache = Cache
+    @cache.cacheFolder(@path())
 
-ClassList = require './models/class-list'
-Config = require './models/config'
-PupilList = require './models/pupil-list'
-Register = require './models/register'
-Session = require './models/session'
-
-exports.ClassList = ClassList
-exports.Config = Config
+exports.ClassList = require './models/class-list'
+exports.Config = require './models/config'
 exports.Menu = require './models/menu'
-exports.PupilList = PupilList
-exports.Register = Register
-exports.Session = Session
+exports.PupilList = require './models/pupil-list'
+exports.Register = require './models/register'
+exports.Session = require './models/session'

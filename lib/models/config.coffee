@@ -36,7 +36,7 @@ module.exports =
     Session.loadDefaults()
 
   all: ->
-    CSON.readFileSync(Database.path() + '/config.cson')
+    require('ipc').sendSync('get-from-cache', 'config')
 
   value: (key) ->
     @all()[key]
