@@ -9,6 +9,7 @@
     "coffee-script": "1.6.3",
     "cson-safe": "0.1.1",
     "less": "1.4.2",
+    "pdfkit": "0.6.2",
     "rimraf": "2.2.8",
     "season": "2.0.0",
     "space-pen": "3.2.0",
