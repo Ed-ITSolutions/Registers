@@ -14,7 +14,8 @@ exports.Database =
     rimraf.sync(@path() + "pupils/", (e) ->
       alert("Deletion Error: " + e)
     )
-    fs.unlinkSync(@path() + "class-list.cson")
+    if(fs.existsSync(@path() + "class-list.cson"))
+      fs.unlinkSync(@path() + "class-list.cson")
 
   loadCache: ->
     @cache = Cache
