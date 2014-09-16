@@ -5,7 +5,7 @@ Session = require './session'
 
 module.exports =
   keys: [
-    ["school-name", "Testington High"],
+    ["school-name", "Set Name in Config"],
     ["use-attendance", true],
     ["use-dinner", true],
     ["data-export-directory", "db/export/"],
