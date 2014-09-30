@@ -1,13 +1,17 @@
+fs = require 'fs'
+ini = require 'ini'
 mysql = require 'mysql'
 
 exports = exports ? this
 
 exports.Database =
   loadConnection: ->
+    iniDetails = ini.parse(fs.readFileSync('./connect.ini', 'utf-8'))
+
     details = {
-      host: 'localhost',
-      user: 'root',
-      password: 'mysql'
+      host: iniDetails['MySQLConnection']['host'],
+      user: iniDetails['MySQLConnection']['user'],
+      password: iniDetails['MySQLConnection']['password']
     }
 
     connection = mysql.createConnection(details)
