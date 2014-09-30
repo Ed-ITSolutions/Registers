@@ -47,3 +47,7 @@ module.exports=
 
     @mysqlDate: (date) ->
       date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+
+    @displayDate: (mysqlDate) ->
+      date = new Date(Date.parse(mysqlDate))
+      date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear()

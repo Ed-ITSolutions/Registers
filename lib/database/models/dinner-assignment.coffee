@@ -7,3 +7,6 @@ module.exports =
     @menuFor: (date) ->
       assignment = @manualSearchQuery("date = '" + @mysqlDate(date) + "'")[0]
       return DinnerMenu.find('idDinnerMenu', assignment.menuId)
+
+    @fromToday: ->
+      @manualSelectQuery("date >= '" + @mysqlDate(new Date) + "'")

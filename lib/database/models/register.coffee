@@ -16,7 +16,3 @@ module.exports =
         return @manualSelectQuery('classId = ' + classId + ' AND sessionId = ' + sessionId + ' AND date = "' + date + '"')[0]
       else
         return results[0]
-
-    @displayDate: (mysqlDate) ->
-      date = new Date(Date.parse(mysqlDate))
-      date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear()
