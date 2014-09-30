@@ -1,4 +1,4 @@
-{DinnerMenu, Model} = require '../../database'
+{DinnerMenu, DinnerChoice, Model} = require '../../database'
 
 module.exports =
   class DinnerMenuAssignment extends Model
@@ -10,3 +10,7 @@ module.exports =
 
     @fromToday: ->
       @manualSelectQuery("date >= '" + @mysqlDate(new Date) + "'")
+
+    @forRegister: ->
+      assignment = @manualSelectQuery("date = '" + @mysqlDate(new Date) + "'")[0]
+      return DinnerChoice.where('menuId', assignment.menuId)
