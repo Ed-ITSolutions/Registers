@@ -1,4 +1,4 @@
-{Model} = require '../../database'
+{Config, Model, Register} = require '../../database'
 
 module.exports =
   class RegisterEntry extends Model
@@ -14,3 +14,12 @@ module.exports =
         return @manualSelectQuery('registerId = ' + registerId + ' AND pupilId = ' + pupilId + ' LIMIT 1')[0]
       else
         return results[0]
+
+    @havingDinner: (date) ->
+      registers = Register.manualSelectQuery('date = "' + @mysqlDate(date) + '" AND sessionId = ' + Config.setting('dinnerSession'))
+      ents = []
+      for register in registers
+        entries = @manualSelectQuery('registerId = ' + register.idRegister + ' AND NOT choiceId = 0 AND present = 1')
+        ents = ents.concat(entries)
+
+      return ents
