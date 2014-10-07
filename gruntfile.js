@@ -1,6 +1,8 @@
 module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-install-dependencies');
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -25,8 +27,22 @@ module.exports = function(grunt){
           {src: 'build/<%= pkg.version %>/lib/client/client.js', dest: 'build/<%= pkg.version %>/lib/client/index.js', filter: 'isFile'}
         ]
       }
+    },
+
+    'install-dependencies':{
+      options: {
+        cwd: 'build/<%= pkg.version %>'
+      }
+    },
+
+    shell: {
+      launch: {
+        command: 'C:\\AtomShell\\16.2\\atom.exe C:\\Github\\Registers\\Registers'
+      }
     }
+
   });
 
-  grunt.registerTask('build', ['coffee', 'copy']);
+  grunt.registerTask('build', ['coffee', 'copy', 'install-dependencies']);
+  grunt.registerTask('default', ['shell:launch']);
 }
