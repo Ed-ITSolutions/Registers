@@ -5,4 +5,4 @@ module.exports =
     @tableName: 'config'
 
     @setting: (name) ->
-      @find('setting', name).value
+      @unescape @find('setting', name).value

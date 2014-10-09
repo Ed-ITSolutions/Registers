@@ -16,6 +16,6 @@ module.exports =
           @tbody id: 'pupil-tbody', 'data-class': classId, =>
             for pupil in Pupil.where('classId', classId)
               @tr =>
-                @td pupil.firstName
-                @td pupil.lastName
+                @td Pupil.unescape pupil.firstName
+                @td Pupil.unescape pupil.lastName
                 @td pupil.UPN

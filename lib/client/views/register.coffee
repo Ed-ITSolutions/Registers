@@ -17,7 +17,7 @@ module.exports =
           @tbody id: 'registerBody', =>
             for pupil in Pupil.where('classId', register.classId)
               @tr =>
-                @td pupil.firstName + ' ' + pupil.lastName
+                @td Pupil.unescape(pupil.firstName) + ' ' + Pupil.unescape(pupil.lastName)
                 @td =>
                   @div class: 'input-control switch', =>
                     @label =>

@@ -42,6 +42,9 @@ module.exports=
     @escape: (str) ->
       str.replace(/'/g, "\\\'")
 
+    @unescape: (str) ->
+      str.replace(/%20/g," ")
+
     @manualSelectQuery: (str) ->
       ipc.sendSync('run-query', 'SELECT * FROM registers.' + @tableName + ' WHERE ' + str)
 
