@@ -13,7 +13,7 @@ module.exports =
           @thead =>
             @tr =>
               @th 'Choice'
-          @tbody =>
+          @tbody id: 'choices', =>
             for choice in DinnerChoice.where('menuId', menu.idDinnerMenu)
               @tr =>
                 @td choice.name

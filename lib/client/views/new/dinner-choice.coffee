@@ -29,5 +29,6 @@ module.exports =
         name: $('#newName').val(),
         menuId: $('#menuId').val()
       })
+      $('#choices').append('<tr><td>' + $('#newName').val() + '</td></tr>')
       @closeWindow(event, element)
       return false

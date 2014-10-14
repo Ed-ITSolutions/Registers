@@ -14,7 +14,7 @@ module.exports =
             @tr =>
               @th 'Menu'
               @th 'Date'
-          @tbody =>
+          @tbody id: 'assignments', =>
             for assignment in DinnerMenuAssignment.fromToday()
               @tr =>
                 @td DinnerMenu.find('idDinnerMenu', assignment.menuId).name

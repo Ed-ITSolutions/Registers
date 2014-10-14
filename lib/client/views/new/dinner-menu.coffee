@@ -2,6 +2,8 @@
 
 {DinnerMenu} = require '../../../database'
 
+DinnerChoicesView = require '../lists/choices'
+
 module.exports =
   class NewDinnerMenuView extends View
     @content: ->
@@ -27,5 +29,7 @@ module.exports =
       DinnerMenu.insert({
         name: $('#newName').val()
       })
-      closeWindow(event, element)
+      menu = DinnerMenu.find('name', $('#newName').val())
+      $('#mainBody').html(new DinnerChoicesView(menu))
+      @closeWindow(event,element)
       return false

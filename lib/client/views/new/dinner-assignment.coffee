@@ -33,5 +33,7 @@ module.exports =
         menuId: $('#newMenu').val(),
         date: $('#newDate').val()
       })
+      menu = DinnerMenu.find('idDinnerMenu', $('#newMenu').val())
+      $('#assignments').append("<tr><td>" + menu.name + "</td><td>" + $('#newDate').val() + "</td></tr>")
       @closeWindow(event, element)
       return false
