@@ -1,6 +1,6 @@
 {View} = require 'space-pen'
 
-{Class, DinnerMenuAssignment, Pupil, Register, RegisterEntry, Session} = require '../../database'
+{Class, Config, DinnerMenuAssignment, Pupil, Register, RegisterEntry, Session} = require '../../database'
 
 module.exports =
   class RegisterView extends View
@@ -13,7 +13,8 @@ module.exports =
             @tr =>
               @th "Name"
               @th "Present?"
-              @th "Dinner Choice"
+              if '' + register.sessionId == Config.setting('dinnerSession')
+                @th "Dinner Choice"
           @tbody id: 'registerBody', =>
             for pupil in Pupil.where('classId', register.classId)
               @tr =>
@@ -25,11 +26,12 @@ module.exports =
                       @input type: 'checkbox', 'data-pupil': pupil.idPupils, 'data-register': register.idRegister
                       @span class: 'check'
                       @span class: 'choice', "Yes"
-                @td =>
-                  @select 'data-pupil': pupil.idPupils, 'data-register': register.idRegister, =>
-                    @option value: 0, 'None/Packed Lunch'
-                    for choice in DinnerMenuAssignment.forRegister()
-                      @option value: choice.idDinnerChoice, choice.name
+                if '' + register.sessionId == Config.setting('dinnerSession')
+                  @td =>
+                    @select 'data-pupil': pupil.idPupils, 'data-register': register.idRegister, =>
+                      @option value: 0, 'None/Packed Lunch'
+                      for choice in DinnerMenuAssignment.forRegister()
+                        @option value: choice.idDinnerChoice, choice.name
         @button class: 'large info', click: 'recordRegister', "Record Register"
 
     recordRegister: (event, element) ->
@@ -76,13 +78,13 @@ module.exports =
 
         input = $('#registerBody tr:nth-child(' + current + ')').children('td').children('div').children('label').children('input')
         input.prop 'checked', false
-
-      $('#mainBody').append('<div class="metro notify-container" id="notifyContainer"></div>')
-      $('#notifyContainer').append('<div class="notify shadow"><div class="content" id="choicesList"><b>Dinner Choices</b><br /><br /></div></div>')
-      $('#choicesList').append('[0] None/Packed Lunch<br />')
-      $(document).on 'keydown', null, '0', ->
-        select = $('#registerBody tr:nth-child(' + current + ')').children('td').children('select')
-        select.val(0)
+      if($('thead tr').children().length == 3)
+        $('#mainBody').append('<div class="metro notify-container" id="notifyContainer"></div>')
+        $('#notifyContainer').append('<div class="notify shadow"><div class="content" id="choicesList"><b>Dinner Choices</b><br /><br /></div></div>')
+        $('#choicesList').append('[0] None/Packed Lunch<br />')
+        $(document).on 'keydown', null, '0', ->
+          select = $('#registerBody tr:nth-child(' + current + ')').children('td').children('select')
+          select.val(0)
 
       num = 0
       for choice in DinnerMenuAssignment.forRegister()
