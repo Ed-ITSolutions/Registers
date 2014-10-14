@@ -1,29 +1,29 @@
-CSON = require 'season'
 fs = require 'fs'
-rimraf = require 'rimraf'
-Cache = require './cache'
+ini = require 'ini'
+mysql = require 'mysql'
 
 exports = exports ? this
+
 exports.Database =
-  cache: {}
+  loadConnection: ->
+    iniDetails = ini.parse(fs.readFileSync('./connect.ini', 'utf-8'))
 
-  path: ->
-    CSON.readFileSync(__dirname + '/../data-path.cson')['path']
+    details = {
+      host: iniDetails['MySQLConnection']['host'],
+      user: iniDetails['MySQLConnection']['user'],
+      password: iniDetails['MySQLConnection']['password']
+    }
 
-  clearForImport: ->
-    rimraf.sync(@path() + "pupils/", (e) ->
-      alert("Deletion Error: " + e)
-    )
-    if(fs.existsSync(@path() + "class-list.cson"))
-      fs.unlinkSync(@path() + "class-list.cson")
+    connection = mysql.createConnection(details)
 
-  loadCache: ->
-    @cache = Cache
-    @cache.cacheFolder(@path())
+exports.Model = require './database/model'
 
-exports.ClassList = require './models/class-list'
-exports.Config = require './models/config'
-exports.Menu = require './models/menu'
-exports.PupilList = require './models/pupil-list'
-exports.Register = require './models/register'
-exports.Session = require './models/session'
+exports.Class         = require './database/models/class'
+exports.Config        = require './database/models/config'
+exports.DinnerMenu    = require './database/models/dinner-menu'
+exports.DinnerChoice  = require './database/models/dinner-choice'
+exports.DinnerMenuAssignment    = require './database/models/dinner-assignment'
+exports.Pupil         = require './database/models/pupil'
+exports.Register      = require './database/models/register'
+exports.RegisterEntry = require './database/models/registerentry'
+exports.Session       = require './database/models/session'

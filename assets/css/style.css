@@ -1,0 +1,59 @@
+#mainBody{
+  padding:10px;
+  padding-top:50px;
+}
+
+.switch .choice{
+  margin:5px;
+}
+
+.switch label{
+  margin:auto;
+  min-width:20px;
+}
+
+.summary-bar .bar{
+  width:95%;
+  margin:auto;
+  box-shadow:5px 5px 5px #444;
+  overflow:auto;
+}
+
+.bar div{
+  height:50px;
+  float:left;
+}
+
+.bar .present{
+  background-color:rgba(0,255,0,0.4);
+}
+
+.bar .absent{
+  background-color:rgba(255,0,0,0.4);
+}
+
+.bar .missing{
+  background-color:#ccc;
+}
+
+.window.flat{
+  width:300px;
+  top:100px;
+  left:242px;
+}
+
+.window.flat .content{
+  padding:5px;
+}
+
+.window-overlay{
+  background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+tr.current{
+  background-color:rgba(0,0,255,0.5);
+}
+
+.pdf button{
+  display:none;
+}
