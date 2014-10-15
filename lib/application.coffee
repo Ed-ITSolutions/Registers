@@ -7,6 +7,9 @@ IPCEvents = require './ipc-events'
 
 window = null
 
+process.chdir(__dirname)
+process.chdir('../')
+
 app.on 'window-all-closed', ->
   app.quit()
 

@@ -2,7 +2,7 @@
 
 {Class, Pupil} = require '../../../database'
 
-PupilListView = require './pupils.coffee'
+PupilListView = require './pupils'
 
 module.exports =
   class ClassList extends View
