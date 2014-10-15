@@ -37,7 +37,7 @@ module.exports = function(grunt){
 
     shell: {
       launch: {
-        command: 'C:\\AtomShell\\16.2\\atom.exe C:\\Github\\repos\\Registers'
+        command: 'C:\\AtomShell\\18.0\\atom.exe C:\\Github\\repos\\Registers'
       }
     }
 
