@@ -35,17 +35,24 @@ module.exports =
         @button class: 'large info', click: 'recordRegister', "Record Register"
 
     recordRegister: (event, element) ->
+      element.html('Saving.')
+
       $('#registerBody input').each (el) ->
         entry = RegisterEntry.for($(this).attr('data-register'), $(this).attr('data-pupil'))
         RegisterEntry.update({
           present: $(this).prop 'checked'
         }, 'idRegisterEntry', entry.idRegisterEntry)
 
+      element.html('Saving..')
+
       $('#registerBody select').each (el) ->
         entry = RegisterEntry.for($(this).attr('data-register'), $(this).attr('data-pupil'))
         RegisterEntry.update({
           choiceId: $(this).val()
         }, 'idRegisterEntry', entry.idRegisterEntry)
+
+      element.html('Saved!')
+
 
     loadData: ->
       $('#registerBody input').each (el) ->
