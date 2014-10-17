@@ -8,6 +8,10 @@ AttendanceSummaryView = require './attendance-summary'
 DinnersSummaryView = require './dinners-summary'
 RegisterView = require './register'
 
+PaperRegister = require './pdfs/paper-register'
+
+wkhtmltopdf = require '../../bindings/wkhtmltopdf'
+
 module.exports =
   class HomeView extends View
     @content: ->
@@ -41,6 +45,12 @@ module.exports =
             @div class: 'brand bg-black', =>
               @span class: 'name', 'Select a Class'
 
+        @div class: 'tile bg-darkRed', click: 'printPaperRegister', =>
+          @div class: 'tile-content icon', =>
+            @i class: 'icon-cabinet'
+          @div class: 'brand bg-black', =>
+            @span class: 'name', 'Print Paper Registers'
+
     openAttendanceSummary: (event, element) ->
       $('#mainBody').html(new AttendanceSummaryView)
 
@@ -55,5 +65,20 @@ module.exports =
       view = new RegisterView(register)
       $('#mainBody').html(view)
       view.loadData()
+
+      return false
+
+    printPaperRegister: (event, element) ->
+      $('#mainBody').append(new PaperRegister)
+
+      path = "C:\\pdf\\paper-registers.pdf"
+
+      wkhtmltopdf.render($('.pdf').html(), path)
+
+      $('.pdf').remove()
+
+      setTimeout(->
+        require('shell').openExternal(path)
+      , 1000)
 
       return false
