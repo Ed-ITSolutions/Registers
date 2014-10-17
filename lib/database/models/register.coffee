@@ -16,3 +16,6 @@ module.exports =
         return @manualSelectQuery('classId = ' + classId + ' AND sessionId = ' + sessionId + ' AND date = "' + date + '"')[0]
       else
         return results[0]
+
+    @inRange: (from, to) ->
+      @manualSelectQuery('date >= "' + from + '" AND date <= "' + to + '"')
